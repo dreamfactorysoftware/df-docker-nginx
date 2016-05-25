@@ -75,6 +75,7 @@ If your database and redis runs inside another container you can simply link it 
 ### Using load balance
 
 Creating three web containers to load balance among them.
+
 _Replace "UseAny32CharactersLongStringHere" below with any 32 characters long string_
 
 `docker run -d --name df-web1 -e "APP_KEY=UseAny32CharactersLongStringHere" -e "DB_HOST=db" -e "DB_USERNAME=df_admin" -e "DB_PASSWORD=df_admin" -e "DB_DATABASE=dreamfactory" -e "REDIS_HOST=rd" -e "REDIS_DATABASE=0" -e "REDIS_PORT=6379" --link df-mysql:db --link df-redis:rd dreamfactory/v2`
