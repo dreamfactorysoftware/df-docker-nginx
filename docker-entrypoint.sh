@@ -52,6 +52,8 @@ rm -rf /var/run/apache2/*
 
 # start php5-fpm
 service php5-fpm start
+# start hhvm
+service hhvm start
 
 # start Apache
 exec /usr/sbin/nginx -g "daemon off;"

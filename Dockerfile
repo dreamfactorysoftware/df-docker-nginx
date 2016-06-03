@@ -6,7 +6,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
     git-core curl nginx php5-fpm php5-common php5-cli php5-curl php5-json php5-mcrypt php5-mysqlnd php5-pgsql php5-sqlite \
-    php-pear php5-dev php5-ldap php5-mssql openssl pkg-config libpcre3-dev libv8-dev python nodejs python-pip zip && \
+    php-pear php5-dev php5-ldap php5-mssql openssl pkg-config libpcre3-dev libv8-dev python nodejs python-pip zip
+
+RUN apt-get install -y software-properties-common && \
+    apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 && \
+    add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main" && \
+    apt-get update && \
+    apt-get install -y hhvm && \
+    /usr/share/hhvm/install_fastcgi.sh && \
     rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
@@ -41,10 +48,10 @@ RUN git clone https://github.com/dreamfactorysoftware/dreamfactory.git /opt/drea
 WORKDIR /opt/dreamfactory
 
 # Uncomment this line if you're building for Bluemix and/or using redis for your cache
-RUN composer require "predis/predis:~1.0"
+#RUN composer require "predis/predis:~1.0"
 
 # install packages
-# RUN composer install
+RUN composer install
 
 RUN php artisan dreamfactory:setup --no-app-key --db_driver=mysql --df_install=Docker
 
