@@ -45,13 +45,8 @@ else
   fi
 fi
 
-# Make sure we're not confused by old, incompletely-shutdown httpd
-# context after restarting the container.  httpd won't start correctly
-# if it thinks it is already running. Same path as APACHE_RUN_DIR in /etc/apache2/envvars
-rm -rf /var/run/apache2/*
-
-# start php5-fpm
-service php5-fpm start
+# start php7.0-fpm
+service php7.0-fpm start
 
 # start Apache
 exec /usr/sbin/nginx -g "daemon off;"
