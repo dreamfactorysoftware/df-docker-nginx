@@ -45,6 +45,16 @@ else
   fi
 fi
 
+# do we have configs for Session management ?
+jwt_vars=("JWT_TTL" "JWT_REFRESH_TTL" "ALLOW_FOREVER_SESSIONS")
+for var in "${jwt_vars[@]}"
+do
+  if [ -n "${!var}" ]; then
+    echo "Setting DF_${var}"
+    sed -i "s/##DF_${var}=.*/DF_${var}=${!var}/" .env
+  fi
+done
+
 # start php7.0-fpm
 service php7.0-fpm start
 

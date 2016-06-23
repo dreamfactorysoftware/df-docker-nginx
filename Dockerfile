@@ -49,7 +49,7 @@ WORKDIR /opt/dreamfactory
 #RUN composer require "predis/predis:~1.0"
 
 # install packages
-RUN composer install
+RUN composer install --no-dev
 
 RUN php artisan dreamfactory:setup --no-app-key --db_driver=mysql --df_install=Docker
 
