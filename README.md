@@ -1,6 +1,8 @@
 # df-docker-nginx
 Docker container for DreamFactory 2.2.x using nginx.
 
+THIS IS DEPRECATED. If you're looking for a DreamFactory Docker image, please see [https://github.com/dreamfactorysoftware/df-docker](https://github.com/dreamfactorysoftware/df-docker) however keep in mind it is experimental and unsupported.
+
 # Prerequisites
 
 ## Get Docker
